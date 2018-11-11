@@ -18,24 +18,27 @@ int main()
         {		
 		XNextEvent(dis, &event);
 
-		if (event.type==Expose && event.xexpose.count==0) {
-			redraw();
-		}
+		//if (event.type==Expose && event.xexpose.count==0) {
+		//	redraw();
+		//}
+                
+                ch = getch(); 
 
-		if (event.type==KeyPress&& XLookupString(&event.xkey, text, 255,&key,0)==1) 
-                if           (text[0]=='L') {    mvprintw( 250, 250, "line" );   } 
-                else if      (text[0]=='l') {    mvlinew( 20, 30, 100, 120 ); }
-                else if (text[0]=='r') {    mvrectanglew( 10, 20, 100, 200); }
-                else if (text[0]=='q') {  gameover = 1 ; }
+                if      ( ch =='L') {    mvprintw( 250, 250, "line" );   } 
+                else if ( ch =='l') {    mvlinew( 20, 30, 100, 120 ); }
+                else if ( ch =='r') {    mvrectanglew( 10, 20, 100, 200); }
+                else if ( ch =='q') {  gameover = 1 ; }
+                else if ( ch =='p') {  mvpointw( 75, 50 ); }
 
 		if (event.type==ButtonPress) 
                 {
 			int x=event.xbutton.x, y=event.xbutton.y;
                         XSetForeground(dis, gc, 0 );
 			mvprintw( y, x , "Mouse ");
+			printf( "Y=%d X=%d\n", y, x );
 		}
 
-	 }
+	}
    	endwin();
 	return 0;
 }

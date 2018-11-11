@@ -47,6 +47,19 @@ void endwin() {
 	exit(1);				
 };
 
+
+int getch()
+{
+     char text[255];
+     int valuert = 0;
+     if (event.type == KeyPress && XLookupString(&event.xkey, text, 255,&key,0)==1) 
+       valuert = text[ 0 ];
+     else 
+       valuert = 0;
+
+     return valuert;  
+}
+
 void redraw() {
 	XClearWindow(dis, win);
 };
@@ -68,6 +81,10 @@ void mvlinew( int y0, int x0, int y1, int x1)
     XDrawLines( dis , win, gc, points, npoints, CoordModeOrigin);
 }
 
+void mvpointw( int y0, int x0 )
+{
+    XDrawPoint(dis, win, gc, x0 , y0 );
+}
 
 void mvrectanglew( int y0, int x0, int y1, int x1)
 {
