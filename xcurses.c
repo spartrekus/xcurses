@@ -12,8 +12,8 @@ Window win;
 GC gc;
 
 /* here are our X routines declared! */
-void init_x();
-void endwin();
+//void init_x();
+//void endwin();
 void redraw();
 
 XEvent event;		/* the XEvent declaration !!! */
@@ -31,7 +31,7 @@ void initscr()
         // xserver android
    	//win=XCreateSimpleWindow(dis,DefaultRootWindow(dis),0,0,	1260, 690, 5, black, white);
    	win=XCreateSimpleWindow(dis,DefaultRootWindow(dis),0,0,	640, 480, 5, black, white);
-	XSetStandardProperties(dis,win,"TextX11","Hi",None,NULL,0,NULL);
+	XSetStandardProperties(dis,win,"X11 Window","Hi",None,NULL,0,NULL);
 	XSelectInput(dis, win, ExposureMask|ButtonPressMask|KeyPressMask);
         gc=XCreateGC(dis, win, 0,0);        
 	XSetBackground(dis,gc,white);
@@ -59,6 +59,10 @@ int getch()
 
      return valuert;  
 }
+
+void erase() {
+	XClearWindow(dis, win);
+};
 
 void redraw() {
 	XClearWindow(dis, win);
